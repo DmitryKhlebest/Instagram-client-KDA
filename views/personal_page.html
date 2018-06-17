@@ -1,0 +1,73 @@
+
+<div id="personal_page">
+	<h1>Personal page</h1>
+	<hr>
+	<div style="margin-left: 3%">
+		<div id="left_div_pp" style="float:left">
+			<div>
+				<div style="float: left"><p class="lead">{{user.login}}</p></div>
+				<div style="text-align: right">
+					<span>{{user.avatarCountLikes}}</span>
+					<button ng-click="likeAvatar()" class="button-image-like">
+						<img class="img-like" ng-src="/resourses/images/like.png">
+					</button>
+				</div>
+			</div>
+			<img class="img-avatar" ng-src={{user.pathAvatar}} alt="Фото пока нет">
+
+			<div ng-if="isMyPage()">
+				<input type="file" accept="image/*" style="display: none" id="uploadAvatar" onchange="angular.element(this).scope().uploadAvatarToServer(this.files[0])" multiple="false">
+				<button style="margin-top:10px; width: 200px" class="btn btn-primary" ng-click='uploadAvatar()'>Upload avatar</button>
+			</div>
+
+			<div ng-if="!isMyPage()">
+				<button style="margin-top:10px; width: 200px" id="openOrCloseChatButton" class="btn btn-primary">Открыть чат</button>
+			</div>
+
+		</div>
+
+		<div id="right_div_pp" style="margin-left:240px">
+			<p class="lead">
+            <h3>My pictures</h3>
+				<!--<div id="div_my_images"></div>-->
+                <input ng-if="isMyPage()" type="file" accept="image/*" style="display:none" id="uploadImages" onchange="angular.element(this).scope().uploadImagesToServer(this.files)" multiple="true">
+				<button ng-if="isMyPage()" class="btn btn-primary add-images-button" style="margin-left: 10px" ng-click='uploadImages()'>Add images</button>
+			</p>
+			<input ng-if="isMyPage()" type="text" name="description" value="#image1 Какое-то описание  #image2 , ещё описание" class="form-control add-images-button" id="input-description" placeholder="Описание">
+			<hr>
+
+			<div class="wrapper">
+				<div class="portfolio-content">
+					<ul id="table" class="portfolio-area" ng-repeat="image in images">
+						<li>
+							<div>
+								<button ng-if="isMyPage()" class='close' style='z-index: 1' ng-click='removeImage($index)'>&times</button>
+								<span class="image-block">
+									<a href="/resourses/{{user.id}}/{{image.name}}" rel="prettyPhoto[gallery]" title={{image.name}}>
+										<img width="200" height="150" ng-src="/resourses/{{user.id}}/{{image.name}}" alt={{image.name}} title={{image.name}} />
+									</a>
+								</span>
+								<div class="home-portfolio-text">
+									<h5 class="post-title-portfolio" style="float: left; margin-left: 5px">
+										<a href="#" rel="bookmark" title={{image.name}}>{{image.name}}</a>
+									</h5>
+									<div style='text-align:right'>
+										<span>{{image.numberLikes}}</span>
+										<button class='button-image-like' ng-click='clickLike($index)'>
+											<img class='img-like' src="/resourses/images/like.png">
+										</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="imgContainer">
+	<ul id="img-list"></ul>
+</div>

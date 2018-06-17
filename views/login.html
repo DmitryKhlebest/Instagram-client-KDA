@@ -1,0 +1,25 @@
+<div id="login">
+	<h1>Login</h1>
+	<hr>
+	<div style="width: 70%; text-align: center; margin: 0 auto;">
+		<p class="lead">Enter your user name and password. If there is no such user, it will be created.</p>
+		<br>
+        <form>
+            <div class="form-group">
+            <label for="input-username" class="label-login">Login</label>
+            <input type="text" ng-model="login" class="form-control" id="input-username" placeholder="Login" style="width: 75%;" required>
+    </div>
+    <div class="form-group">
+        <label for="input-password" class="label-login">Password</label>
+        <input type="password" ng-model="password" class="form-control" id="input-password" placeholder="Password" style="width: 75%" required>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" style="margin-left: 20%; width: 20%; float: left" ng-click="loginRequestServer()">Sign In</button>
+        <button class="btn btn-primary" style="margin-left: 5%; width: 25%; float: left" ng-click="registrationRequestServer()">Registration</button>
+        <button class="btn" style="margin-left: 5%; float: left; width: 20%;" ng-click="clear()">Clear</button>
+        <br><br><br>
+        <span id="error" class="error"></span>
+    </div>
+        </form>
+	</div>
+</div>
